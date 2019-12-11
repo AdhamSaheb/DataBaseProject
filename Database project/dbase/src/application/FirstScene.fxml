@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FirstSceneController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../pics/thumb.jpeg" />
+         </image>
+         <effect>
+            <Blend />
+         </effect>
+      </ImageView>
+      <Text fill="#f7f8f4" layoutX="255.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ramallah's " textAlignment="CENTER" wrappingWidth="366.33673095703125">
+         <font>
+            <Font name="Bauhaus 93" size="65.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="311.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transportation Database">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </Text>
+      <Line endX="-33.0" endY="-74.89208984375" layoutX="650.0" layoutY="378.0" startX="-425.0" startY="-74.89208984375" stroke="#f8f8f8" />
+      <ImageView fx:id="image" fitHeight="98.0" fitWidth="109.0" layoutX="365.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../pics/database-icon-11-256%20-%20Copy.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-0.07" contrast="-0.05" hue="-0.05" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="90.0" fitWidth="142.0" layoutX="367.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../pics/clipart-bus-animated-gif-5.gif" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="EnterButton" layoutX="316.0" layoutY="324.0" onAction="#Enter" prefHeight="85.0" prefWidth="196.0" style="-fx-background-color: chocolate; -fx-border-color: white; -fx-border-width: 0.3em; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Enter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="ExitButton" layoutX="347.0" layoutY="427.0" onAction="#Exit" prefHeight="49.0" prefWidth="134.0" style="-fx-background-color: white; -fx-border-color: chocolate; -fx-border-width: 0.2em; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Exit" textFill="#f7a107">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

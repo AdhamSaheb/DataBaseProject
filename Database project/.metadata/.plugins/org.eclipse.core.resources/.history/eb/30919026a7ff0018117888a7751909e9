@@ -1,0 +1,183 @@
+package application;
+
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+
+public class DriverSceneController implements Initializable {
+private static int clicks;
+    @FXML
+    private TextField idtext;
+
+    @FXML
+    private TextField nametext;
+
+    @FXML
+    private DatePicker datetext;
+
+    @FXML
+    private Button insertbutton;
+
+    @FXML
+    private Button deletebutton;
+
+    @FXML
+    private Button resetbutton;
+
+    @FXML
+    private Button updatebutton;
+
+    @FXML
+    private Button viewbutton;
+    @FXML
+    private Button back;
+
+    @FXML
+    void back(ActionEvent event) {
+Main.PrimaryStage.setScene(Main.catagory);        
+Main.PrimaryStage.centerOnScreen();
+
+    }
+
+    @FXML
+    void deletepressed(ActionEvent event) {
+    	String id = idtext.getText() ; 
+    	try {
+			DataBaseConnection.delete("Delete from mydb.driver where DID =  '" + id + "'  ");
+			Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setTitle("Success !");
+	    	
+	    	alert.setContentText(  id +" Has been Deleted (if exists) ");
+	    	
+	    	alert.showAndWait() ; 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Error!");
+	    	
+	    	alert.setContentText("An unexpected error has occured !");
+	    	
+	    	alert.showAndWait() ; 
+		}
+    }
+
+    @FXML
+    void insertpressed(ActionEvent event) {
+    	String id  = idtext.getText() ; 
+    	String name = nametext.getText() ; 
+    	String startdate = datetext.getValue().toString() ; 
+    	
+    	try {
+			DataBaseConnection.write(" Insert into mydb.driver values('" + id + "','" + name+ "','" + startdate + "')" );
+			Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setTitle("Success !");
+	    	alert.setContentText("Another Driver has been added");
+	    	alert.showAndWait() ; 
+	    	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Error!");
+	    	
+	    	alert.setContentText("May be a dublicate or Wrong format !");
+	    	
+	    	alert.showAndWait() ; 
+		}
+    }
+
+    @FXML
+    void resetpressed(ActionEvent event) {
+    	idtext.clear();
+    	nametext.clear(); 
+    	datetext.getEditor().clear(); 
+
+    }
+    
+
+    @FXML
+    void updatepressed(ActionEvent event) {
+    	clicks++;
+    	String idf="";
+    	if(clicks==1)
+    	{ 
+    	    	String id = idtext.getText().toString(); 
+    	    	idf=id;
+    	    	try {
+    	    		ResultSet r = DataBaseConnection.read("SELECT * FROM mydb.driver where DID = '" +id+"' ") ;    	
+    	    		if(!r.next())
+    	    		{
+    	    			Alert alert = new Alert(AlertType.ERROR);
+    					alert.setTitle("Error!");
+    					    	
+    					    	alert.setContentText("No such id found !");
+    					    	alert.showAndWait() ; 
+    	    		}
+    	    		else {
+    	    		nametext.setText(r.getString("DName"));
+    				datetext.getEditor().setText(r.getDate("Start_Date").toString());
+    	    		}
+    			} catch (SQLException e1) {
+    				e1.printStackTrace();
+    			}
+    	    
+    	}
+    	else if (clicks==2)
+    	{String id = idtext.getText(); 
+    	if(idf.equals(id))
+    	{
+    		Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Error!");
+	    	
+	    	alert.setContentText("You cannot change the key!");
+	    	
+	    	alert.showAndWait() ; 
+    	}
+    	else {
+    	String startdate = datetext.getValue().toString() ; 
+    	String name = nametext.getText() ;
+    	
+    	try {
+			DataBaseConnection.update("update mydb.driver set DName = '" +name+ "' ,Start_Date = '" +startdate+ "' "
+					+ "   where DID= '"+id+"'  ") ;
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Success !");
+	    	
+	    	alert.setContentText(id +" Has been Updated (if exists)");
+	    	
+	    	alert.showAndWait() ; 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Error!");
+	    	
+	    	alert.setContentText("An unexpected error has occured !");
+	    	
+	    	alert.showAndWait() ; 
+		} 
+    	clicks=0;}}
+    }
+
+    @FXML
+    void viewpressed(ActionEvent event) {
+    	Main.PrimaryStage.setScene(Main.drivertable);
+
+    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+clicks=0;		
+	}
+
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.drivertableController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../Downloads/background%20for%20transactions%20(2).jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="table" layoutX="48.0" layoutY="59.0" prefHeight="482.0" prefWidth="704.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="59.0">
+        <columns>
+          <TableColumn fx:id="idcol" prefWidth="156.0" text="ID " />
+          <TableColumn fx:id="namecol" prefWidth="288.0" text="Name" />
+            <TableColumn fx:id="datecol" prefWidth="259.0" text="Start Date" />
+        </columns>
+      </TableView>
+      <Button fx:id="refresh" layoutX="373.0" layoutY="561.0" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="73.0" text="Refresh" />
+      <Button fx:id="home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#gohome" text="Back" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Report2">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../Downloads/background%20for%20transactions%20(2).jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="table" layoutX="30.0" layoutY="60.0" prefHeight="478.0" prefWidth="754.0">
+        <columns>
+          <TableColumn fx:id="day" prefWidth="118.0" text="Day" />
+          <TableColumn fx:id="clock" prefWidth="93.0" text="Clock" />
+            <TableColumn fx:id="DID" prefWidth="79.0" text="DID" />
+            <TableColumn fx:id="Plate_Num" prefWidth="183.0" text="Plate#" />
+            <TableColumn fx:id="LName" prefWidth="203.0" text="Lane" />
+            <TableColumn fx:id="passing" prefWidth="75.0" text="VPPhr" />
+        </columns>
+      </TableView>
+      <Button fx:id="back" layoutX="19.0" layoutY="554.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="60.0" text="Back" />
+      <Button fx:id="refresh" layoutX="377.0" layoutY="554.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="60.0" style="-fx-background-radius: 5em;" text="Refresh" textFill="#0e0e0e">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

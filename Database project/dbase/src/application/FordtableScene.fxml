@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FordtableSceneController">
+   <children>
+      <ImageView fitHeight="610.0" fitWidth="811.0" layoutX="-5.0" layoutY="-8.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../Downloads/background%20for%20transactions%20(2).jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="fordtable" layoutX="31.0" layoutY="60.0" prefHeight="456.0" prefWidth="743.0">
+        <columns>
+          <TableColumn fx:id="platenum" prefWidth="224.0" text="Plate Number" />
+          <TableColumn fx:id="symbol" minWidth="6.0" prefWidth="103.0" text="Symbol" />
+            <TableColumn fx:id="capacity" minWidth="8.0" prefWidth="98.0" text="Capacity" />
+            <TableColumn fx:id="asslane" prefWidth="317.0" text="Original Assigned Lane" />
+        </columns>
+      </TableView>
+      <Button fx:id="homebutton" layoutX="14.0" layoutY="557.0" mnemonicParsing="false" onAction="#gohome" prefHeight="25.0" prefWidth="59.0" text="Home" />
+      <Button fx:id="Refresh" layoutX="371.0" layoutY="555.0" mnemonicParsing="false" onAction="#refresh" prefHeight="29.0" prefWidth="77.0" text="Refresh" />
+   </children>
+</AnchorPane>

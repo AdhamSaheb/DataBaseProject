@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.loginController">
+   <children>
+      <ImageView fitHeight="522.0" fitWidth="336.0" layoutX="-8.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../pics/thumb.jpeg" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-0.37" />
+         </effect>
+      </ImageView>
+      <Text fill="#e4e4e4" fontSmoothingType="LCD" layoutX="89.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome " textAlignment="CENTER" wrappingWidth="141.52099609375">
+         <font>
+            <Font name="Algerian" size="29.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="22.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" This applicaion represents a DataBase for the tansportation system in Ramallah , As a student , you can login and check the status of a specific transportation lane , E,X if you want to check the cars passing before heading to Birzeit University " textAlignment="JUSTIFY" wrappingWidth="274.6708984375">
+         <font>
+            <Font name="Andalus" size="19.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="22.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This Application also provides different management features for the transportation companies such as managing Employees , Lanes or Drivers " wrappingWidth="274.67089423537254">
+         <font>
+            <Font name="Andalus" size="19.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="328.0" layoutY="-4.0" prefHeight="531.0" prefWidth="683.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="359.0" layoutY="232.0" prefHeight="34.0" prefWidth="54.0" text="OR" textFill="#c9bfb7">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="28.0" />
+               </font>
+            </Label>
+            <Text fill="#e89255" layoutX="39.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up Now !" wrappingWidth="182.66943359375">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="#9e968e" layoutX="66.0" layoutY="157.0" opacity="0.7" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="we need your ... " wrappingWidth="240.66943359375">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="joinid" layoutX="58.0" layoutY="210.0" prefHeight="31.0" prefWidth="249.0" promptText="Student Number / Username" />
+            <JFXTextField fx:id="joinpassword" layoutX="58.0" layoutY="266.0" prefHeight="31.0" prefWidth="249.0" promptText="A new Password" />
+            <Label layoutX="471.0" layoutY="130.0" text="Login" textFill="#e89255">
+               <font>
+                  <Font name="Arial Black" size="32.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="loginid" layoutX="435.0" layoutY="225.0" promptText="Student#" />
+            <JFXButton fx:id="login" layoutX="428.0" layoutY="422.0" onAction="#login" prefHeight="60.0" prefWidth="209.0" style="-fx-background-color: chocolate; -fx-background-radius: 5em; -fx-border-color: white; -fx-border-width: 4; -fx-border-radius: 5em;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Arial Narrow" size="27.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="join" layoutX="106.0" layoutY="421.0" onAction="#join" prefHeight="60.0" prefWidth="209.0" style="-fx-background-color: chocolate; -fx-background-radius: 5em; -fx-border-color: white; -fx-border-width: 4; -fx-border-radius: 5em;" text="Join !" textFill="WHITE">
+               <font>
+                  <Font name="Arial Narrow" size="27.0" />
+               </font>
+            </JFXButton>
+            <JFXComboBox fx:id="type" layoutX="89.0" layoutY="331.0" prefHeight="34.0" prefWidth="195.0" promptText="Account Type" />
+            <JFXPasswordField fx:id="loginpassword" layoutX="435.0" layoutY="307.0" promptText="Password" />
+         </children>
+      </AnchorPane>
+      <Line endX="54.0" endY="47.0" layoutX="653.0" layoutY="89.0" startX="54.0" startY="115.0" stroke="#e8a155" strokeWidth="5.0" />
+      <Line endX="54.0" endY="-74.0" layoutX="653.0" layoutY="369.0" startX="54.0" startY="115.0" stroke="#ff9b5d" strokeWidth="5.0" />
+   </children>
+</AnchorPane>

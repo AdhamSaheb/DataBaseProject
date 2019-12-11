@@ -1,0 +1,345 @@
+package application;
+
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert.AlertType;
+
+public class VehicleController implements Initializable {
+private  int clicks;
+private  int clicks2;
+	 @FXML
+	    private Button insert;
+
+	    @FXML
+	    private Button delete;
+
+	    @FXML
+	    private Button update;
+	    
+	    @FXML
+	    private Button vehicleviewbutton;
+	    @FXML
+	    private Button back;
+
+    @FXML
+    private Label chooselabel;
+
+    @FXML
+    private RadioButton bus;
+
+    @FXML
+    private RadioButton ford;
+
+    @FXML
+    private Label platenumlabel;
+
+    @FXML
+    private Label capacitylabel;
+
+    @FXML
+    private Label symbollabel;
+
+    @FXML
+    private TextField platenumtext;
+
+    @FXML
+    private TextField capacitytext;
+    @FXML
+    private ImageView img1;
+
+    @FXML
+    private ImageView img2;
+    @FXML
+    private TextField symboltext;
+
+    @FXML
+    private Label assignedlanelabel;
+    
+    @FXML
+    private TextField assignedlanetext;
+
+    @FXML
+    private TextField discountedpricetext;
+
+    @FXML
+    private Label dicountedpricelabel;
+
+    @FXML
+    private Label ownercolabel;
+
+    @FXML
+    private TextField ownercompanytext;
+    
+    ToggleGroup g=new ToggleGroup();
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		clicks=0;
+	    bus.setToggleGroup(g);
+	    ford.setToggleGroup(g);	
+	}	
+	 @FXML
+	    void busmethod(ActionEvent event) {
+bus.setVisible(false);
+ford.setVisible(false);
+img1.setVisible(false);
+img2.setVisible(false);
+chooselabel.setVisible(false);
+platenumlabel.setVisible(true);
+platenumtext.setVisible(true);
+dicountedpricelabel.setVisible(true);
+discountedpricetext.setVisible(true);
+ownercompanytext.setVisible(true);
+ownercolabel.setVisible(true);
+symboltext.setVisible(true);
+symbollabel.setVisible(true);
+capacitylabel.setVisible(true);
+capacitytext.setVisible(true);
+insert.setVisible(true);
+delete.setVisible(true);
+update.setVisible(true);
+vehicleviewbutton.setVisible(true);
+
+    }
+
+	    @FXML
+	    void fordmethod(ActionEvent event) {
+	    	img1.setVisible(false);
+	    	img2.setVisible(false);
+	    	bus.setVisible(false);
+	    	ford.setVisible(false);
+	    	chooselabel.setVisible(false);
+	    	platenumlabel.setVisible(true);
+	    	platenumtext.setVisible(true);
+	    	symboltext.setVisible(true);
+	    	symbollabel.setVisible(true);
+	    	capacitylabel.setVisible(true);
+	    	capacitytext.setVisible(true);
+	    	assignedlanelabel.setVisible(true);
+	    	assignedlanetext.setVisible(true);
+	    	insert.setVisible(true);
+	    	delete.setVisible(true);
+	    	update.setVisible(true);
+	    	vehicleviewbutton.setVisible(true);
+	    	
+	    }
+    
+	    @FXML
+	    void delete(ActionEvent event) {
+	    	String id = platenumtext.getText() ; 
+	    	String s="";
+	    	if(bus.isSelected())
+	    		s=new String("bus");
+	    	else if(ford.isSelected())
+	    		s=new String("ford");
+
+	    	try {
+				DataBaseConnection.delete("Delete from mydb."+s+" where Plate_Num =  '" + id + "'  ");
+				Alert alert = new Alert(AlertType.INFORMATION);
+		    	alert.setTitle("Deletion was done successfully!");
+		    	
+		    	alert.setContentText(  id +" Has been Deleted (if exists) ");
+		    	
+		    	alert.showAndWait() ; 
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.ERROR);
+		    	alert.setTitle("Error!");
+		    	
+		    	alert.setContentText("An unexpected error has occured !");
+		    	
+		    	alert.showAndWait() ; 
+			}
+	    }
+	    
+	    @FXML
+	    void insert(ActionEvent event) {
+	    	String capacity = capacitytext.getText() ; 
+	    	String platenum = platenumtext.getText() ;
+	    	String sym = symboltext.getText() ;
+	    	String s="";
+	    	String ownerco="",disprice="",asslane="";
+	    	if(bus.isSelected())
+    		{
+    		s=new String("bus");
+    		disprice=new String(discountedpricetext.getText());
+    		ownerco=new String(ownercompanytext.getText());
+    		}
+    	else if(ford.isSelected())
+    		{
+    		s=new String("ford");
+    		asslane=new String(assignedlanetext.getText());
+    		}
+    	
+	    	try {
+	    		if(bus.isSelected())
+	    			DataBaseConnection.write(" Insert into mydb."+s+" values('" + platenum + "','" + capacity+ "','" + sym + "','" +disprice + "','" +ownerco+"')" );
+	    		else if(ford.isSelected())
+	    			DataBaseConnection.write(" Insert into mydb."+s+" values('" + platenum + "','" + capacity+ "','" + sym + "','" +asslane +"')" );
+				Alert alert = new Alert(AlertType.INFORMATION);
+		    	alert.setTitle("Insertion was done successfully!");
+		    	alert.setContentText("Another vehicle has been added");
+		    	alert.showAndWait() ; 
+		    	
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.ERROR);
+		    	alert.setTitle("Error!");
+		    	
+		    	alert.setContentText("May be a dublicate or Wrong format !");
+		    	
+		    	alert.showAndWait() ; 
+			}
+	    }
+	    
+	    @FXML
+	    void update(ActionEvent event) throws SQLException {
+
+clicks++;
+if(clicks==1)
+{
+	String platenum = platenumtext.getText() ;
+	if(bus.isSelected())
+	{
+		ResultSet r= DataBaseConnection.read("Select * FROM mydb.bus b WHERE b.Plate_Num='"+platenum+"'");
+		if(!r.next())
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			    	alert.setContentText("No such id found !");
+			    	alert.showAndWait() ; 
+		}
+		else {
+			capacitytext.setText(r.getString("Passengers_Capacity"));
+		    symboltext.setText(r.getString("Symbol"));
+		    ownercompanytext.setText("Owner_Company");
+		    discountedpricetext.setText(r.getString("Dicounted_Price"));
+	}}
+	else if(ford.isSelected())
+	{
+		
+		ResultSet r= DataBaseConnection.read("Select * FROM mydb.ford b WHERE b.Plate_Num='"+platenum+"'");
+		if(!r.next())
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			    	alert.setContentText("No such id found !");
+			    	alert.showAndWait() ; 
+		}
+		else {
+		symboltext.setText(r.getString("Symbol"));
+		capacitytext.setText(r.getString("Passengers_Capacity"));
+		assignedlanetext.setText(r.getString("Original_Assigned_Lane"));
+		}
+	}
+}
+else if(clicks==2) {
+	    	String capacity = capacitytext.getText() ; 
+	    	String platenum = platenumtext.getText() ;
+	    	String sym = symboltext.getText() ;
+	    	String s="";
+	    	String ownerco="",disprice="",asslane="";
+	    	if(bus.isSelected())
+	    		{
+	    		s=new String("bus");
+	    		disprice=new String(discountedpricetext.getText());
+	    		ownerco=new String(ownercompanytext.getText());
+	    		}
+	    	else if(ford.isSelected())
+	    		{
+	    		s=new String("ford");
+	    		asslane=new String(assignedlanetext.getText());
+	    		}
+	    	
+	    	try {
+	    		if(bus.isSelected())
+				DataBaseConnection.update("update mydb."+s+"set Plate_Num = '" +platenum+ "' ,Symbol = '" +sym+"' ,Passengers_Capacity = '"+capacity+"' ,Dicounted_Price = '" +disprice+"' ,Owner_Company = '" +ownerco+ "' "
+						+ "   where Plate_Num= '"+platenum+"'  ") ;
+	    		else if(ford.isSelected())
+	    			DataBaseConnection.update("update mydb."+s+" set Plate_Num = '" +platenum+ "' ,Symbol = '" +sym+"' ,Passengers_Capacity = '"+capacity+"' ,Original_Assigned_Lane = '" +asslane+ "' "+ "   where Plate_Num= '"+platenum+"'  ");
+				Alert alert = new Alert(AlertType.INFORMATION);
+	            alert.setTitle("Update was done successfully!");
+		    	alert.setContentText(platenum +" Has been Updated (if exists)");
+		    	alert.showAndWait() ; 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.ERROR);
+		    	alert.setTitle("Error!");
+		    	alert.setContentText("An unexpected error has occured !");
+		    	alert.showAndWait() ; 
+			} 
+	    		
+	    	
+	   clicks=0;
+	   }
+}
+	    @FXML
+	    void view(ActionEvent event) {
+	    	if(ford.isSelected())
+	    		Main.PrimaryStage.setScene(Main.Fordtable);
+	    	else if(bus.isSelected())
+	    		Main.PrimaryStage.setScene(Main.Bustable);
+	    	Main.PrimaryStage.centerOnScreen();
+
+	    }
+	    
+	    @FXML
+	    void back(ActionEvent event) {
+	 
+		   img1.setVisible(true);
+	    	img2.setVisible(true);
+	    	bus.setVisible(true);
+	    	ford.setVisible(true);
+	    	bus.setSelected(false);
+	    	ford.setSelected(false);
+	    	chooselabel.setVisible(true);
+	    	platenumlabel.setVisible(false);
+	    	platenumtext.setVisible(false);
+	    	symboltext.setVisible(false);
+	    	symbollabel.setVisible(false);
+	    	capacitylabel.setVisible(false);
+	    	capacitytext.setVisible(false);
+	    	assignedlanelabel.setVisible(false);
+	    	assignedlanetext.setVisible(false);
+	    	insert.setVisible(false);
+	    	delete.setVisible(false);
+	    	update.setVisible(false);
+	    	vehicleviewbutton.setVisible(false);
+	    	dicountedpricelabel.setVisible(false);
+	    	discountedpricetext.setVisible(false);
+	    	ownercompanytext.setVisible(false);
+	    	ownercolabel.setVisible(false);
+	    	capacitytext.clear();
+	    	platenumtext.clear();
+	    	symboltext.clear();
+	    	capacitytext.clear();
+	    	assignedlanetext.clear();
+	    	discountedpricetext.clear();
+	    	ownercompanytext.clear();
+	   
+	    }
+	    
+	    @FXML 
+	    void home(ActionEvent e)
+	    {
+	    	  Main.PrimaryStage.setScene(Main.catagory);
+		    	Main.PrimaryStage.centerOnScreen();
+	    }
+	    	
+	    
+	    }
+
